@@ -1,1 +1,71 @@
-<!doctype html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cyber Security Readiness Checker</title><link rel="stylesheet" href="style.css"></head><body><header><h1>Cyber Security Readiness Checker</h1><p>Educational portfolio demo for small-business security awareness.</p></header><main><div class="notice">This is not a real security audit. Do not enter confidential business information.</div><section id="quiz"><h2>Answer the security checklist</h2><div id="questions"></div><button onclick="calculate()">Get my readiness result</button></section><section id="result" hidden><h2>Your result</h2><div id="score"></div><h3>Recommended next actions</h3><ul id="advice"></ul><button onclick="window.print()">Print / save demo report</button><button onclick="resetQuiz()">Start again</button></section><section class="info"><h2>What this checks</h2><p>MFA, password practices, software updates, backups, phishing awareness, endpoint protection, access removal and incident planning. These are common foundations of good cyber-security hygiene.</p></section></main><footer>Student portfolio project · Demo only · No data is sent anywhere</footer><script src="script.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cyber Security Readiness Checker for small businesses</title>
+<meta name="description" content="A 10-question self-assessment for small businesses, based on the UK Cyber Essentials controls and the NCSC Small Business Guide. Get a score and a ranked action plan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap">
+    <p class="product">Cyber Security Readiness Checker</p>
+    <h1>How ready is your small business for a cyber attack?</h1>
+    <p class="intro">Answer 10 questions based on the UK government's <a href="https://www.ncsc.gov.uk/cyberessentials/overview">Cyber Essentials</a> controls and the <a href="https://www.ncsc.gov.uk/collection/small-business-guide">NCSC Small Business Guide</a>. You'll get a score and a list of fixes, biggest risk first. It takes about 3 minutes.</p>
+    <p class="privacy">Your answers stay in this browser. Nothing is sent anywhere.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <form id="assessment" novalidate>
+    <div id="question-groups"></div>
+    <div class="form-footer">
+      <p id="progress" aria-live="polite">0 of 10 answered</p>
+      <button type="submit" class="primary">See my results</button>
+    </div>
+    <p id="form-error" class="error" role="alert" hidden></p>
+  </form>
+
+  <section id="results" hidden aria-labelledby="results-title" tabindex="-1">
+    <h2 id="results-title">Your results</h2>
+    <div class="score-row">
+      <p class="score"><span id="score-number">0</span><span class="out-of">/100</span></p>
+      <p id="score-level" class="level"></p>
+    </div>
+
+    <h3>By area</h3>
+    <ul id="breakdown" class="breakdown"></ul>
+
+    <h3>What to fix, in order</h3>
+    <ol id="actions" class="actions"></ol>
+
+    <div class="result-buttons">
+      <button type="button" id="download" class="primary">Download action plan</button>
+      <button type="button" id="print">Print report</button>
+      <button type="button" id="restart">Start again</button>
+    </div>
+    <p class="disclaimer">This is a self-assessment to help you learn, not a certified audit. To get certified, look at <a href="https://www.ncsc.gov.uk/cyberessentials/overview">Cyber Essentials</a>.</p>
+  </section>
+
+  <section id="history" hidden aria-labelledby="history-title">
+    <h2 id="history-title">Your past results</h2>
+    <p class="hint">Saved in this browser, so you can see whether you're improving.</p>
+    <table>
+      <thead><tr><th scope="col">Date</th><th scope="col">Score</th><th scope="col">Result</th></tr></thead>
+      <tbody id="history-rows"></tbody>
+    </table>
+    <button type="button" id="clear-history" class="link-button">Clear history</button>
+  </section>
+</main>
+
+<footer class="wrap site-footer">
+  <p>Built by <a href="https://macroer16.github.io/victor-cloud-portfolio/">Victor Benson</a>. <a href="https://github.com/macroer16/cyber-security-readiness-checker">Source code on GitHub</a>.</p>
+</footer>
+
+<script type="module" src="src/app.js"></script>
+</body>
+</html>
